@@ -16,3 +16,16 @@
 - /auth/register
 - Duplicate email validation
 - Password hashing before DB save
+
+## Sprint 4 — JWT Login Authentication
+- /auth/login endpoint implemented
+- Password verification added
+- JWT token generation configured
+- Access token expiry added
+- Secure secret key integration completed
+
+## Sprint 5 — Protected User Authorization
+- JWT token verification implemented
+- Current authenticated user dependency created
+- /users/me protected endpoint added
+- Token expiration and invalid token handling completed
