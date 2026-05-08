@@ -29,3 +29,10 @@
 - Current authenticated user dependency created
 - /users/me protected endpoint added
 - Token expiration and invalid token handling completed
+
+## Sprint 6 — Expense CRUD Core
+- Expense model created
+- Expense schema validation added
+- Protected expense creation endpoint implemented
+- User-specific expense listing added
+- Expense ownership security enforced
