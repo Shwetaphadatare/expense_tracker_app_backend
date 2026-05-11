@@ -43,3 +43,10 @@
 - Ownership validation enforced for modifications
 - Secure expense-by-ID filtering added
 - Unauthorized cross-user access prevented
+
+## Sprint 8 — Expense Filtering and Pagination
+- Category filtering implemented
+- Date range filtering added
+- Pagination with skip/limit added
+- Sorting by creation date supported
+- Query performance and scalability improved

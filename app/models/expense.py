@@ -18,7 +18,7 @@ class Expense(Base):
         nullable=False
     )
     
-    created_at = Column(DateTime, default=datetime.now)
+    created_at = Column(DateTime, default=datetime.now,nullable=False)
     
     owner = relationship("User")
     
