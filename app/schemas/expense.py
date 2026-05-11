@@ -14,3 +14,9 @@ class ExpenseResponse(BaseModel):
     class Config:
         from_attributes = True
     
+class ExpenseUpdate(BaseModel):
+    title:str = Field(min_length=2, max_length=100)
+    amount:float = Field(gt=0)
+    category:str = Field(min_length=2,max_length=50)
+    
+    

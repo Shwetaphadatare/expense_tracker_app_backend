@@ -36,3 +36,10 @@
 - Protected expense creation endpoint implemented
 - User-specific expense listing added
 - Expense ownership security enforced
+
+## Sprint 7 — Expense Update and Delete
+- Expense update endpoint implemented
+- Expense delete endpoint implemented
+- Ownership validation enforced for modifications
+- Secure expense-by-ID filtering added
+- Unauthorized cross-user access prevented

@@ -5,8 +5,8 @@ from app.dependencies.db import get_db
 from app.dependencies.auth import get_current_user
 from app.models.expense import Expense
 from app.models.user import User
-from app.schemas.expense import ExpenseCreate, ExpenseResponse
-
+from app.schemas.expense import ExpenseCreate, ExpenseResponse, ExpenseUpdate
+from fastapi import HTTPException
 
 router = APIRouter(
     prefix="/expenses",
@@ -40,3 +40,50 @@ def get_my_expenses(
     ).all()
     
     return expenses
+
+@router.put("/{expense_id}",response_model=ExpenseResponse)
+def update_expense(expense_id:int, updated_data:ExpenseUpdate, db:Session = Depends(get_db),current_user:User=Depends(get_current_user)):
+    expense = db.query(Expense).filter(
+        Expense.id == expense_id,
+        Expense.owner_id == current_user.id
+    ).first()
+    
+    if not expense:
+        raise HTTPException(
+            status_code = 404,
+            detail="Expense not found"
+        )
+        
+    expense.title = updated_data.title
+    expense.amount = updated_data.amount
+    expense.category = updated_data.category
+    
+    db.commit()
+    db.refresh(expense)
+    
+    return expense
+
+
+@router.delete("/{expense_id}",status_code=200)
+def delete_expense(
+    expense_id:int,
+    db:Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    expense = db.query(Expense).filter(
+        Expense.id == expense_id,
+        Expense.owner_id == current_user.id
+    ).first()
+    
+    if not expense:
+        raise HTTPException(
+            status_code=404,
+            detail="Expense not found"
+        )
+        
+    db.delete(expense)
+    db.commit()
+    
+    return{
+        "message":"Expense deleted sussessfully"
+    }
