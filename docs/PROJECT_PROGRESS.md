@@ -50,3 +50,10 @@
 - Pagination with skip/limit added
 - Sorting by creation date supported
 - Query performance and scalability improved
+
+## Sprint 9 — Dashboard Analytics
+- Dashboard summary endpoint added
+- Total spending and transaction count implemented
+- Category-wise expense breakdown added
+- Monthly spending aggregation implemented
+- Analytics foundation prepared for charts and reports
