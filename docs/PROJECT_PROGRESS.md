@@ -57,3 +57,10 @@
 - Category-wise expense breakdown added
 - Monthly spending aggregation implemented
 - Analytics foundation prepared for charts and reports
+
+## Sprint 10 — Budget Goals and Alerts
+- Budget model implemented
+- Monthly category budgets added
+- Budget creation and retrieval endpoints built
+- Budget vs actual spending analytics added
+- Overspending alert system implemented
