@@ -64,3 +64,10 @@
 - Budget creation and retrieval endpoints built
 - Budget vs actual spending analytics added
 - Overspending alert system implemented
+
+## Sprint 11 — Recurring Expenses
+- Recurring expense model added
+- Weekly/monthly recurring templates implemented
+- Due recurring expense processing added
+- Automated expense generation system created
+- Subscription and recurring payment tracking enabled
