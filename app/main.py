@@ -13,9 +13,15 @@ from app.models.user import User
 from app.models.expense import Expense
 from app.models.budget import Budget
 
+from app.core.exceptions import register_exception_handlers
+
+
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Expense Tracker API")
+
+register_exception_handlers(app)
 
 app.include_router(health_Router)
 app.include_router(auth_router)
