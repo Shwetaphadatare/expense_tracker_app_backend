@@ -1,13 +1,14 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
 from app.db.base import Base
+from app.models.enums import ExpenseCategoryEnum
 
 class Budget(Base):
     __tablename__ = "budgets"
     
     id = Column(Integer, primary_key=True, index=True)
-    category = Column(String, nullable=False)
+    category = Column(Enum(ExpenseCategoryEnum), nullable=False)
     monthly_limit = Column(Float, nullable=False)
     month = Column(String(7), nullable=False)
     

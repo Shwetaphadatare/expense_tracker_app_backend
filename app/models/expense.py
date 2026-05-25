@@ -1,8 +1,10 @@
-from sqlalchemy import Column, Integer,String, Float, ForeignKey, DateTime
+from sqlalchemy import Column, Integer,String, Float, ForeignKey, DateTime, Enum
 from sqlalchemy.orm import relationship
 from datetime import datetime
-
+ 
 from app.db.base import Base
+from app.models.enums import ExpenseCategoryEnum
+
 
 class Expense(Base):
     __tablename__ = "expenses"
@@ -10,7 +12,7 @@ class Expense(Base):
     id = Column(Integer, primary_key=True,index=True)
     title = Column(String, nullable=False)
     amount = Column(Float, nullable=False)
-    category = Column(String, nullable=False)
+    category = Column(Enum(ExpenseCategoryEnum), nullable=False)
     
     owner_id = Column(
         Integer,

@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field, field_validator
 import re
-
+from app.models.enums import ExpenseCategoryEnum
 
 class BudgetCreate(BaseModel):
-    category: str = Field(min_length=2, max_length=50)
+    category: ExpenseCategoryEnum
     monthly_limit: float = Field(gt=0)
     month: str
 
@@ -26,7 +26,7 @@ class BudgetCreate(BaseModel):
     
 class BudgetResponse(BaseModel):
     id : int
-    category:str
+    category:ExpenseCategoryEnum
     monthly_limit : float
     month:str
     
@@ -34,7 +34,7 @@ class BudgetResponse(BaseModel):
         from_attributes = True
         
 class BudgetAlert(BaseModel):
-    category:str
+    category:ExpenseCategoryEnum
     monthly_limit:float
     spent:float
     remaining:float
@@ -42,7 +42,7 @@ class BudgetAlert(BaseModel):
     
     
 class BudgetUpdate(BaseModel):
-    category: str = Field(min_length=2,max_length=50)
+    category: ExpenseCategoryEnum
     monthly_limit: float = Field(gt=0)
     month:str
     

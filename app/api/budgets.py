@@ -63,7 +63,7 @@ def get_budgets(
 
 
 
-@router.put("/{budget_id}",response_model=BudgetUpdate)
+@router.put("/{budget_id}",response_model=BudgetResponse)
 def update_budget(
     budget_id:int,
     updated_budget:BudgetUpdate,
