@@ -103,6 +103,29 @@ def update_budget(
     
     return existing_budget
 
+@router.delete("/{budget_id}",status_code=200)
+def delete_budget(budget_id:int,
+        db:Session = Depends(get_db),
+        current_user:User = Depends(get_current_user)):
+    
+    budget = db.query(Budget).filter(
+        Budget.id == budget_id,
+        Budget.owner_id == current_user.id
+    ).first()
+    
+    if not budget:
+        raise HTTPException(
+            status_code=404,
+            detail="Budget not found"
+        )
+        
+    db.delete(budget)
+    db.commit()
+    
+    return{
+        "message":"Budget deleted sucessfully"
+    }
+    
 
 
 @router.get(
@@ -126,7 +149,7 @@ def get_budget_alerts(
 ).filter(
     Expense.owner_id == current_user.id,
     func.lower(func.trim(Expense.category)) ==
-    budget.category.strip().lower(),
+    budget.category.value.strip().lower(),
     func.to_char(
     Expense.created_at,
     "YYYY-MM"
@@ -143,7 +166,7 @@ def get_budget_alerts(
             status = "Within Budget"
 
         alerts.append({
-            "category": budget.category,
+            "category": budget.category.value,
             "monthly_limit": budget.monthly_limit,
             "spent": spent,
             "remaining": remaining,
