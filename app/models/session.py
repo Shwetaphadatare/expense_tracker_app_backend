@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from datetime import datetime, timedelta
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey,Boolean
+from datetime import datetime
 
 from app.db.base_class import Base
 
@@ -12,4 +12,4 @@ class Session(Base):
     expires_at = Column(DateTime, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
     
-    
+    is_revoked = Column(Boolean,default=False)
