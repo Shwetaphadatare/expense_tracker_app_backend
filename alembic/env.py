@@ -5,11 +5,9 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.db.base import Base
-from app.models.user import User
-from app.models.expense import Expense
-from app.models.budget import Budget
-from app.models.recurring_expense import RecurringExpense
+from app.db.base_class import Base
+import app.db.base
+
 
 from app.config.settings import settings
 
@@ -57,7 +55,8 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
-        compare_type=True
+        compare_type=True,
+        compare_server_default=True
     )
 
     with context.begin_transaction():
@@ -78,8 +77,10 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata,
-            compare_type=True
+            connection=connection,
+            target_metadata=target_metadata,
+            compare_type=True,
+            compare_server_default=True
         )
 
         with context.begin_transaction():

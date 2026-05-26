@@ -8,16 +8,14 @@ from app.api.budgets import router as budgets_router
 from app.api.recurring_expense import router as recurring_router
 
 from app.db.database import engine
-from app.db.base import Base
-from app.models.user import User
-from app.models.expense import Expense
-from app.models.budget import Budget
+from app.db.base_class import Base
+
+import app.db.base
 
 from app.core.exceptions import register_exception_handlers
 
 
-
-Base.metadata.create_all(bind=engine)
+ 
 
 app = FastAPI(title="Expense Tracker API")
 

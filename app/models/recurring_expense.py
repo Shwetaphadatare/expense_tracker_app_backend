@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer,String, Float,DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
-from app.db.base import Base
+from app.db.base_class import Base
 
 class RecurringExpense(Base):
     __tablename__ = "recurring_expenses"
